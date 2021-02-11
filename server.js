@@ -31,7 +31,7 @@ app.post("/core/auth/signin", (req, res) => {
   const userCreds = JSON.parse(Object.keys(req.body)[0]);
 
   //Todo: get user here from oracle db
-
+  //---------
   const profile = mockUserData.find((user) => {
     if (user.username === userCreds.username) {
       if (user.password === userCreds.password) {
@@ -42,7 +42,7 @@ app.post("/core/auth/signin", (req, res) => {
     }
   });
   if (!profile) return res.status(400).send('No User Against This Username');
-
+  //---------
   const user = JSON.parse(Object.keys(req.body)[0]);
   return res.send(user);
 });
@@ -50,7 +50,7 @@ app.post("/core/auth/signin", (req, res) => {
 app.put("/core/profile/update", (req, res, next) => {
   const userProfile = JSON.parse(Object.keys(req.body)[0]);
   console.log('profile update request received', userProfile)
-
+  //---------
   const profileIndex = mockUserData.findIndex(user => user.username === userProfile.username);
   console.log('profile index: ', profileIndex)
   if (profileIndex >=0) {
@@ -58,6 +58,7 @@ app.put("/core/profile/update", (req, res, next) => {
     console.log('data after operation', mockUserData);
     return res.status(200).send();
   }
+  //---------
 
   console.log('data after operation', mockUserData);
   //Todo: update user here in oracle db
